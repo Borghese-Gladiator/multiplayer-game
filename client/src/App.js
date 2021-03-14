@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
 // Material UI
-import { makeStyles, MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
-  CssBaseline, Button,
+  Button,
   Paper,
-  Container, Box, Card, TextField, CardMedia
+  Container,
+  TextField
 } from '@material-ui/core';
-import purple from "@material-ui/core/colors/purple";
-import green from "@material-ui/core/colors/green";
 // image assets
 import AnimatedLogoImg from './images/logo.gif';
 import DemoImg from './images/demo-kitten.jpg';
