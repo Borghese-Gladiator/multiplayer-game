@@ -4,7 +4,7 @@ import {
   Grid
 } from '@material-ui/core';
 // assets
-import LoadingIconImg from '../images/Wedges-3s-200px.gif';
+import LoadingIconImg from '../../images/Wedges-3s-200px.gif';
 
 const useStyles = makeStyles((theme) => ({
   loadingIcon: {
