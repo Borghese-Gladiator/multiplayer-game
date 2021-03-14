@@ -24,7 +24,7 @@ function RoomSettings(props) {
 
   return (
     <Paper className={classes.root}>
-      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" style={{minHeight: '300px'}}>
         <Typography variant="h5">Lobby</Typography>
         <Typography variant="body2" gutterBottom>Created by: {hostUser} </Typography>
         <Divider style={{ width: '100%' }} />
