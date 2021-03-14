@@ -1,5 +1,7 @@
 // hook from library
 import { useAsync } from "react-async";
+// custom components
+import RoomSettings from './RoomSettings';
 import LoadingDisplay from './LoadingDisplay';
 
 // You can use async/await or any function that returns a Promise
@@ -18,6 +20,7 @@ export default function CreateRoom() {
       <div>
         <strong>Player data:</strong>
         <pre>{JSON.stringify(data, null, 2)}</pre>
+        <RoomSettings />
       </div>
     )
   return null
