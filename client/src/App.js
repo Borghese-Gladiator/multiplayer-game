@@ -2,14 +2,10 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Landing from './components/Landing';
-
-function CreateRoom() {
-  return <div>CREATE ROOM</div>
-}
+import CreateRoom from './components/CreateRoom';
 
 function App() {
   return (
