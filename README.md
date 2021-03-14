@@ -1,6 +1,13 @@
 # Word-Wolf-Multiplayer-Game
 ## I dedicate this page to the one and only JIIIIIIIIIIIIIIIIIIIIIIIIINB
 
+####  Change
+- removed /client/ to remove Next.js SSR & Reactstrap 
+	- Reactstrap - layout components do not work with Next.js
+	- Next.js - SSR results in styled-components & material-ui/core giving errors during development
+		- Do not need SSR for this app since I have a server, so Next.js is compiled into a build anyways
+- `npx create-react-app client`
+- added @material-ui/core 
 
 ## Next.js / Node.js Chatroom README
 Created a Next.js/Node.js SocketIO Chatroom
