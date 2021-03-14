@@ -1,45 +1,36 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import {
+  Paper, Box, Typography, Button, Divider
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: '100%'
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  root: {
+    padding: 5,
+    minWidth: theme.spacing(50)
+  },
 }));
 
-function RoomSettings() {
+function RoomSettings(props) {
   const classes = useStyles();
-  const [age, setAge] = useState('');
+  const { hostUser } = props;
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  
   return (
-    <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+    <Paper className={classes.root}>
+      <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <Typography variant="h5">Lobby</Typography>
+        <Typography variant="body2" gutterBottom>Created by: {hostUser} </Typography>
+        <Divider style={{ width: '100%' }} />
+        <Button color="primary" variant="contained">Start Game</Button>
+      </Box>
+    </Paper>
   )
 }
 
