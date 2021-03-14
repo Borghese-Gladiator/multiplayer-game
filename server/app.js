@@ -9,7 +9,7 @@ const moment = require("moment");
 
 // constants
 const port = process.env.PORT || 4001;
-const allowedOriginURL = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "https://nextjs-nodejs-chatroom.netlify.app";
+const allowedOriginURL = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : process.env.FRONTEND_URL;
 const app = express();
 const index = require("./routes/index");
 
