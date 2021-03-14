@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 // libraries
 const express = require("express");
 const http = require("http");
@@ -6,6 +9,7 @@ const moment = require("moment");
 
 // constants
 const port = process.env.PORT || 4001;
+const allowedOriginURL = process.env.NODE_ENV !== 'production' ? "http://localhost:3000" : "https://nextjs-nodejs-chatroom.netlify.app";
 const app = express();
 const index = require("./routes/index");
 
@@ -21,7 +25,7 @@ app.use((req, res, next) => {
 const server = http.createServer(app);
 const io = socketIo(server, { // websocket CORS
   cors: {
-    origin: "https://nextjs-nodejs-chatroom.netlify.app",
+    origin: allowedOriginURL,
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
