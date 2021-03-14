@@ -16,7 +16,7 @@ import MyBackgroundImg from '../images/background.png';
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing(20),
+    paddingTop: theme.spacing(5),
     backgroundImage: `url(${MyBackgroundImg})`,
     minHeight: '100vh'
   },
