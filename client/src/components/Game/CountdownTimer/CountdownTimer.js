@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
-const minutesToAdd = 5;
+const minutesToAdd = 1;
 const currentTime = new Date().getTime();
 const futureTime = new Date(currentTime + minutesToAdd*60000);
 
 function CountdownTimer() {
   
-  const calculateTimeLeft = () => {
-    const difference = futureTime - new Date();
-    console.log(difference)
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
+  const calculateTimeLeft = (difference) => {
+    let timeLeft = {
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
 
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(futureTime - currentTime);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
+    const difference = futureTime - new Date();
+    if (difference > 0) {
+      setTimeout(() => {
+        setTimeLeft(calculateTimeLeft(difference));
+      }, 1000);
+    }
   });
 
   const timerComponents = [];
