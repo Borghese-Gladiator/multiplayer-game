@@ -84,7 +84,7 @@ export default function CreateRoom() {
             <Grid item xs={4}>
               <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                 <Typography variant="h4" gutterBottom>Settings</Typography>
-                <RoomSettings roomURL={`/games/${roomID}`} hostUser={"James"} />
+                <RoomSettings roomURL={`/game/${roomID}`} hostUser={"James"} />
               </Box>
             </Grid>
             <Grid item xs={4}>
