@@ -16,7 +16,7 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/game/:id">
+          <Route path="/game/:roomID">
             <Game />
           </Route>
           <Route path="/create">
