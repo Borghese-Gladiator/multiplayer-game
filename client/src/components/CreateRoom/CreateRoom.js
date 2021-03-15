@@ -53,7 +53,7 @@ export default function CreateRoom() {
   const { data, error, isPending } = useAsync({ promiseFn: loadPlayer, playerId: 2 });
 
   // temp constant - should retrieve this from server
-  const roomID = '1';
+  const roomID = 'abc123';
 
   const [open, setOpen] = useState(false);
   const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + process.env.REACT_APP_API_URL + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
