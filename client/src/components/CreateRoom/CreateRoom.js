@@ -70,15 +70,22 @@ export default function CreateRoom() {
             <Grid item xs={2}>
             </Grid>
           </Grid>
+          <br />
           <div>
             <Typography variant="h4" gutterBottom>Invite your friends!</Typography>
             <Grid container
               onMouseEnter={() => setIsShowingLink(true)}
               onMouseLeave={() => setIsShowingLink(false)}
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
             >
               <Grid item xs={10}>
                 <Paper>
-                  <Typography variant="body1" gutterBottom className={classes.roomLinkText}>
+                  <Typography variant="body1" className={classes.roomLinkText}>
                     {
                       isShowingLink
                         ? JSON.stringify(data, null, 2)
