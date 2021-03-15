@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+// routing
+import { Link } from 'react-router-dom';
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper, Box, Typography, Button, Divider
@@ -20,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RoomSettings(props) {
   const classes = useStyles();
-  const { hostUser } = props;
+  const { roomURL, hostUser } = props;
 
   return (
     <Paper className={classes.root}>
@@ -28,7 +31,7 @@ function RoomSettings(props) {
         <Typography variant="h5">Lobby</Typography>
         <Typography variant="body2" gutterBottom>Created by: {hostUser} </Typography>
         <Divider style={{ width: '100%' }} />
-        <Button color="primary" variant="contained">Start Game</Button>
+        <Button component={Link} to={roomURL} color="primary" variant="contained">Start Game</Button>
       </Box>
     </Paper>
   )
