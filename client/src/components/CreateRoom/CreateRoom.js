@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 // Material UI components
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Paper, Box, Typography, Grid, Button } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 // hook from library
 import { useAsync } from "react-async";
 // custom components
@@ -17,6 +19,10 @@ const loadPlayer = async ({ playerId }, { signal }) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${playerId}`, { signal })
   if (!res.ok) throw new Error(res.statusText)
   return res.json()
+}
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +50,27 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateRoom() {
   const classes = useStyles();
   const [isShowingLink, setIsShowingLink] = useState(false);
-  const { data, error, isPending } = useAsync({ promiseFn: loadPlayer, playerId: 2 })
+  const { data, error, isPending } = useAsync({ promiseFn: loadPlayer, playerId: 2 });
+
+  // temp constant - should retrieve this from server
+  const roomID = '1';
+
+  const [open, setOpen] = useState(false);
+  const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + process.env.REACT_APP_API_URL + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
+
+  const handleClick = () => {
+    // https://stackoverflow.com/questions/11401897/get-the-current-domain-name-with-javascript-not-the-path-etc
+    navigator.clipboard.writeText(roomURL);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   if (isPending) return <LoadingDisplay />
   if (error) return `Something went wrong: ${error.message}`
   if (data)
@@ -58,7 +84,7 @@ export default function CreateRoom() {
             <Grid item xs={4}>
               <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                 <Typography variant="h4" gutterBottom>Settings</Typography>
-                <RoomSettings hostUser={"James"} />
+                <RoomSettings roomURL={`/games/${roomID}`} hostUser={"James"} />
               </Box>
             </Grid>
             <Grid item xs={4}>
@@ -88,18 +114,25 @@ export default function CreateRoom() {
                   <Typography variant="body1" className={classes.roomLinkText}>
                     {
                       isShowingLink
-                        ? JSON.stringify(data, null, 2)
+                        ? JSON.stringify(roomURL, null, 2)
                         : "Hover over me to see the invite link"
                     }
                   </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={2}>
-                <Button color="primary" variant="contained" style={{ width: "95%" }}>Copy</Button>
+                <Button color="primary" variant="contained" style={{ width: "95%" }} onClick={handleClick}>Copy</Button>
               </Grid>
             </Grid>
           </div>
         </Container>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            URL copied to clipboard!
+            <br />
+            {roomURL}
+          </Alert>
+        </Snackbar>
       </div>
     )
   return null
