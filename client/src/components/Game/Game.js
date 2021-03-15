@@ -44,7 +44,7 @@ function Game() {
     });
 
     // subscribe a new user
-    socket.emit("login", roomID, userGen.generateUsername());
+    socket.emit("login", userGen.generateUsername());
     // list of connected users
     socket.on("users", data => {
       setUser({ usersList: JSON.parse(data) })
@@ -69,58 +69,59 @@ function Game() {
 
   return (
     <Container>
-    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <Button onClick={() => alert("PAUSED")}>PAUSE TIMER</Button>
-      <h3>ID: {roomID}</h3>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          {/* List of Connected Users */}
-          <h3 className="d-flex justify-content-center"> Connected users : {user.usersList?.length} </h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th> User name </th>
-                <th> Connection Date </th>
-              </tr>
-            </thead>
-            <tbody>
-              {user.usersList?.map(user => {
-                return (<tr key={user.id}>
-                  <td> {user.userName} </td>
-                  <td> {user.connectionTime} </td>
-                </tr>)
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <Button variant="contained" color="primary" onClick={() => alert("PAUSED")}>PAUSE TIMER</Button>
+        <h3>Room ID: {roomID}</h3>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            {/* List of Connected Users */}
+            <h3 className="d-flex justify-content-center"> Connected users : {user.usersList?.length} </h3>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th> User name </th>
+                  <th> Connection Date </th>
+                </tr>
+              </thead>
+              <tbody>
+                {user.usersList?.map(user => {
+                  return (<tr key={user.id}>
+                    <td> {user.userName} </td>
+                    <td> {user.connectionTime} </td>
+                  </tr>)
+                })}
+              </tbody>
+            </table>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Paper>
+              <Typography variant="h3">{currentPhase}</Typography>
+              <CountdownTimer />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6} style={{ minHeight: "50vh" }}>
+            {/*CHATBOX COMPONENT */}
+            <div>
+              <h2 className="d-flex justify-content-center"> Chat </h2>
+              {recMsg.listMsg?.map((msgInfo, index) => {
+                return (
+                  <div className="d-flex justify-content-center" key={index}>
+                    <b>{msgInfo.userName} </b> :  {msgInfo.msg} <small style={{ marginLeft: "18px", color: "blue", marginTop: "5px" }}> {msgInfo.time} </small>
+                  </div>
+                )
               })}
-            </tbody>
-          </table>
+            </div>
+            <input style={{ width: "300px", display: "inline" }} id="inputmsg" onChange={(event) => setMsg(event.target.value)} />
+            <Button className="btn btn-info" id="btnmsg" onClick={() => { sendMessage() }}> Send </Button>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <h3> name: {loggedUser?.userName} </h3>
+            <Typography variant="h5">YOUR WORD:</Typography>
+            <Typography variant="h3">MIT</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper>
-            <Typography variant="h3">{currentPhase}</Typography>
-            <CountdownTimer />
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6} style={{ minHeight: "50vh" }}>
-          {/*CHATBOX COMPONENT */}
-          <div>
-            <h2 className="d-flex justify-content-center"> Chat </h2>
-            {recMsg.listMsg?.map((msgInfo, index) => {
-              return (
-                <div className="d-flex justify-content-center" key={index}>
-                  <b>{msgInfo.userName} </b> :  {msgInfo.msg} <small style={{ marginLeft: "18px", color: "blue", marginTop: "5px" }}> {msgInfo.time} </small>
-                </div>
-              )
-            })}
-          </div>
-          <input style={{ width: "300px", display: "inline" }} id="inputmsg" onChange={(event) => setMsg(event.target.value)} />
-          <Button className="btn btn-info" id="btnmsg" onClick={() => { sendMessage() }}> Send </Button>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <h3 className="d-flex justify-content-center"> User : {loggedUser?.userName} </h3>
-          <Typography variant="h3">YOUR WORD:</Typography>
-          <Typography variant="h4">MIT</Typography>
-        </Grid>
-      </Grid>
-    </Box></Container>
+      </Box>
+    </Container>
   );
 }
 
