@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Landing from './components/Landing';
 import CreateRoom from './components/CreateRoom';
+import Game from './components/Game';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -14,11 +16,17 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/game/:id">
+            <Game />
+          </Route>
           <Route path="/create">
             <CreateRoom />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Landing />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </div>
