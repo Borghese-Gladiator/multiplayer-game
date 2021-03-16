@@ -9,7 +9,7 @@ import { useAsync } from "react-async";
 // custom components
 import PlayersList from './PlayersList';
 import RoomSettings from './RoomSettings';
-import LoadingDisplay from './LoadingDisplay';
+import LoadingDisplay from '../LoadingDisplay';
 // assets
 import MyBackgroundImg from '../../images/background.png';
 import AnimatedLogoImg from '../../images/logo.gif';
@@ -47,16 +47,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const roomID = 'abc123'; // temp constant - should retrieve this from server
+const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + process.env.REACT_APP_API_URL + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
+const gameModes = [
+  {
+    name: '20 Questions'
+  },
+  {
+    name: 'Default (Mafia)'
+  },
+  {
+    name: 'Experimental'
+  }
+]
+
 export default function CreateRoom() {
   const classes = useStyles();
   const [isShowingLink, setIsShowingLink] = useState(false);
   const { data, error, isPending } = useAsync({ promiseFn: loadPlayer, playerId: 2 });
-
-  // temp constant - should retrieve this from server
-  const roomID = 'abc123';
-
   const [open, setOpen] = useState(false);
-  const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + process.env.REACT_APP_API_URL + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
 
   const handleClick = () => {
     // https://stackoverflow.com/questions/11401897/get-the-current-domain-name-with-javascript-not-the-path-etc
@@ -84,7 +93,7 @@ export default function CreateRoom() {
             <Grid item xs={4}>
               <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                 <Typography variant="h4" gutterBottom>Settings</Typography>
-                <RoomSettings roomURL={`/game/${roomID}`} hostUser={"James"} />
+                <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
               </Box>
             </Grid>
             <Grid item xs={4}>
