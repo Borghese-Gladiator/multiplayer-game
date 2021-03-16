@@ -85,24 +85,22 @@ export default function CreateRoom() {
   if (data)
     return (
       <div className={classes.root}>
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           <img src={AnimatedLogoImg} className={classes.logo} alt="animated logo" />
           <Grid container>
-            <Grid item xs={2}>
-            </Grid>
             <Grid item xs={4}>
               <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                 <Typography variant="h4" gutterBottom>Settings</Typography>
                 <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
               </Box>
             </Grid>
-            <Grid item xs={4}>
-              <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                <Typography variant="h4" gutterBottom>Players</Typography>
-                <PlayersList />
-              </Box>
-            </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={8}>
+              <Container>
+                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                  <Typography variant="h4" gutterBottom>Players</Typography>
+                  <PlayersList />
+                </Box>
+              </Container>
             </Grid>
           </Grid>
           <br />
