@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, CardActionArea } from '@material-ui/core';
 // icons
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
@@ -17,8 +17,10 @@ function PlayersList() {
         const { id, name } = val;
         return (
           <Grid item xs={4} md={3} lg={2} key={id}>
-            <AccountBoxIcon style={{fontSize:"40px", color: "white"}} />
-            <Typography variant="h6" gutterBottom style={{color: "white"}}>{name}</Typography>
+            <CardActionArea>
+              <AccountBoxIcon style={{ fontSize: "40px", color: "white" }} />
+              <Typography variant="h6" gutterBottom style={{ color: "white" }}>{name}</Typography>
+            </CardActionArea>
           </Grid>
         )
       })}
