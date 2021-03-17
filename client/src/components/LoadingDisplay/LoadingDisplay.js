@@ -1,10 +1,11 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Grid
+  Grid,
+  Typography
 } from '@material-ui/core';
 // assets
-import LoadingIconImg from '../../images/Wedges-3s-200px.gif';
+import LoadingIconImg from '../../images/Spinner-1s-200px.gif';
 
 const useStyles = makeStyles((theme) => ({
   loadingIcon: {
@@ -26,7 +27,7 @@ function Loading() {
     >
       <Grid item>
         <img src={LoadingIconImg} alt="Loading..." className={classes.loadingIcon} />
-        <p style={{textAlign: 'center'}}>Loading...</p>
+        <Typography variant="h4" style={{color: "white", textAlign: 'center'}}>Connecting to Server...</Typography>
       </Grid>
     </Grid>
   )
