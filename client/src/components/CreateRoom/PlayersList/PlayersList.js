@@ -17,8 +17,8 @@ function PlayersList() {
         const { id, name } = val;
         return (
           <Grid item xs={4} md={3} lg={2} key={id}>
-            <AccountBoxIcon style={{fontSize:"40px"}} />
-            <Typography variant="h6" gutterBottom>{name}</Typography>
+            <AccountBoxIcon style={{fontSize:"40px", color: "white"}} />
+            <Typography variant="h6" gutterBottom style={{color: "white"}}>{name}</Typography>
           </Grid>
         )
       })}

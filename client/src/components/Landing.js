@@ -6,29 +6,22 @@ import {
   Button,
   Paper,
   Container,
-  TextField
+  TextField,
+  Box,
+  Typography
 } from '@material-ui/core';
 // image assets
-import AnimatedLogoImg from '../images/logo.gif';
-import DemoImg from '../images/demo-kitten.jpg';
-import MyBackgroundImg from '../images/background.png';
+import CustomLogoImg from '../images/coollogo_com-28810298-NO-BACKGROUND.png';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing(5),
-    backgroundImage: `url(${MyBackgroundImg})`,
-    minHeight: '100vh'
-  },
   content: {
     display: 'flex',
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    color: "white"
   },
-  logo: {
-    height: 180
-  },
+
   cardRoot: {
     maxWidth: 345,
     padding: 30,
@@ -45,19 +38,20 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div>
       <Container className={classes.content}>
-        <img src={AnimatedLogoImg} className={classes.logo} alt="animated logo" />
+        <img src={CustomLogoImg} className={classes.logo} alt="animated logo" />
+        <Box m={1}>
+          <Typography variant="h4">More Friendly Politics</Typography>
+        </Box>        
         <Paper className={classes.cardRoot}>
-          <TextField id="standard-basic" label="Enter name here" variant="outlined" />
-          <img
-            src={DemoImg}
-            className={classes.media}
-            alt="Demo Kitten"
-          />
-          <Button component={Link} to="/create" variant="contained" color="primary">
-            Play!
-          </Button>
+          <Box display="flex">
+            <TextField id="standard-basic" label="Enter room URL here" variant="outlined" />
+            <Button component={Link} to="/create" variant="contained" color="primary">
+              Join Room
+            </Button>
+          </Box>
+          
           <Button component={Link} to="/create" variant="contained" color="secondary">
             Create Private Room
           </Button>
