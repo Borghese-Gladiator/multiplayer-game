@@ -30,10 +30,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     paddingTop: theme.spacing(5),
     paddingLeft: theme.spacing(10),
-    paddingRight: theme.spacing(10),
-    backgroundImage: `url(${MyBackgroundImg})`,
-    minHeight: '100vh',
-    color: "white",
+    paddingRight: theme.spacing(10)
   },
   content: {
     display: 'flex',
@@ -43,12 +40,13 @@ const useStyles = makeStyles((theme) => ({
   },
   roomLinkText: {
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2)
+    paddingBottom: theme.spacing(2),
   }
 }));
 
 const roomID = 'abc123'; // temp constant - should retrieve this from server
-const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + process.env.REACT_APP_API_URL + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
+const roomURL = process.env.REACT_APP_NODE_ENV === "production" ? "https://" + window.location.hostname + `/game/${roomID}` : `http://127.0.0.1:3000/game/${roomID}`;
+
 const gameModes = [
   {
     name: '20 Questions'
@@ -86,26 +84,18 @@ export default function CreateRoom() {
     return (
       <div className={classes.root}>
         <Container maxWidth="md">
-          <img src={AnimatedLogoImg} className={classes.logo} alt="animated logo" />
           <Grid container>
             <Grid item xs={4}>
-              <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                <Typography variant="h4" gutterBottom>Settings</Typography>
-                <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
-              </Box>
+              <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
             </Grid>
             <Grid item xs={8}>
               <Container>
-                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                  <Typography variant="h4" gutterBottom>Players</Typography>
-                  <PlayersList />
-                </Box>
+                <PlayersList />
               </Container>
             </Grid>
           </Grid>
           <br />
           <div>
-            <Typography variant="h4" gutterBottom>Invite your friends!</Typography>
             <Grid container
               onMouseEnter={() => setIsShowingLink(true)}
               onMouseLeave={() => setIsShowingLink(false)}
@@ -135,7 +125,7 @@ export default function CreateRoom() {
         </Container>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-            URL copied to clipboard!
+            URL copied to clipboard! Invite your friends
             <br />
             {roomURL}
           </Alert>
