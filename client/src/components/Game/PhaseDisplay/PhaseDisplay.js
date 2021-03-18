@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 // Material UI Components
-import {
-  Box, Grid, Paper, Button, Typography, Container
-} from '@material-ui/core';
+import { Paper, Typography} from '@material-ui/core';
 // Custom components
 import CountdownTimer from './CountdownTimer';
 

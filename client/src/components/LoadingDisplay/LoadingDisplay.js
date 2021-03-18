@@ -1,10 +1,6 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Grid,
-  Typography,
-  Box
-} from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 // assets
 import LoadingIconImg from '../../images/Spinner-1s-200px.gif';
 

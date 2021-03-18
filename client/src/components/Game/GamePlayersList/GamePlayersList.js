@@ -22,7 +22,7 @@ function GamePlayersList(props) {
           {players.map((val, idx) => {
             const { id, name } = val;
             return (
-              <Grid item xs={4} md={3} lg={2} key={idx}>
+              <Grid item xs={4} md={3} lg={2} key={id}>
                 <AccountBoxIcon style={{ fontSize: "40px" }} />
                 <Typography variant="h6" gutterBottom>{name}</Typography>
               </Grid>

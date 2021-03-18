@@ -1,7 +1,5 @@
 // Material UI Components
-import {
-  Box, Grid, Paper, Button, Typography, Container
-} from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 export default function GameChat() {
   return (

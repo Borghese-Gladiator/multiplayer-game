@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // Material UI Components
-import {
-  Box, Grid, Paper, Button, Typography, Container
-} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const minutesToAdd = 1;
 const currentTime = new Date().getTime();

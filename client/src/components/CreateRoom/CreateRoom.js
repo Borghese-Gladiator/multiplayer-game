@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Material UI components
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Paper, Box, Typography, Grid, Button } from '@material-ui/core';
+import { Container, Paper, Typography, Grid, Button } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 // hook from library
@@ -10,9 +10,6 @@ import { useAsync } from "react-async";
 import PlayersList from './PlayersList';
 import RoomSettings from './RoomSettings';
 import LoadingDisplay from '../LoadingDisplay';
-// assets
-import MyBackgroundImg from '../../images/background.png';
-import AnimatedLogoImg from '../../images/logo.gif';
 
 // You can use async/await or any function that returns a Promise
 const loadPlayer = async ({ playerId }, { signal }) => {
