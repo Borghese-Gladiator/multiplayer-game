@@ -8,7 +8,8 @@ export default function PhaseDisplay() {
   const [currentPhase, setCurrentPhase] = useState("VOTING");
   return (
     <Paper>
-      <Typography variant="body">PHASE<Typography variant="h3" style={{ color: "green" }}>{currentPhase}</Typography></Typography>
+      <Typography variant="body1">PHASE</Typography>
+      <Typography variant="h3" style={{ color: "green" }}>{currentPhase}</Typography>
       <CountdownTimer />
     </Paper>
   )
