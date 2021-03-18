@@ -16,7 +16,7 @@ function PlayersList() {
       {players.map((val, idx) => {
         const { id, name } = val;
         return (
-          <Grid item xs={4} md={3} lg={2} key={`${id} ${idx}`}>
+          <Grid item xs={12} md={6} lg={4} key={`${id} ${idx}`}>
             <CardActionArea>
               <AccountBoxIcon style={{ fontSize: "40px", color: "white" }} />
               <Typography variant="h6" gutterBottom style={{ color: "white" }}>{name}</Typography>
