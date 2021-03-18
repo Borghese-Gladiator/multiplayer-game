@@ -40,22 +40,31 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+
 function Game() {
   const classes = useStyles();
-  // We can use the `useParams` hook here to access
-  // the dynamic pieces of the URL.
+  // get Room ID from URL
   let { roomID } = useParams();
 
   const [word, setWord] = useState("MIT");
-
-  const [user, setUser] = useState({
-    usersList: null
-  });
-  const [msg, setMsg] = useState("");
-  const [recMsg, setRecMsg] = useState({
-    listMsg: []
-  });
-  const [loggedUser, setLoggedUser] = useState();
+  // SocketIO Room (users present)
+  const [loggedUser, setLoggedUser] = useState(
+    { id: "1", userName: "Player 1" }
+  );
+  const [userList, setUserList] = useState([
+    { id: "1", userName: "Player 1" },
+    { id: "2", userName: "Player 1" },
+    { id: "3", userName: "Player 1" },
+    { id: "4", userName: "Player 1" },
+    { id: "5", userName: "Player 1" },
+  ]);
+  // SocketIO Chat
+  // NOTE: these IDs are the IDs of the user who sent the message
+  const [msgList, setRecMsg] = useState([
+    { id: "blah", userName: "Player 1", msg: "Message", time: "21:29" },
+    { id: "blah", userName: "Player 1", msg: "Message", time: "21:29" },
+    { id: "blah", userName: "Player 1", msg: "Message", time: "21:29" },
+  ]);
 
   useEffect(() => {
     socket.on('message', function (data) {
@@ -66,7 +75,7 @@ function Game() {
     socket.emit("login", userGen.generateUsername());
     // list of connected users
     socket.on("users", data => {
-      setUser({ usersList: JSON.parse(data) })
+      setUserList(JSON.parse(data))
     });
     // get the logged user
     socket.on("connecteduser", data => {
@@ -75,35 +84,37 @@ function Game() {
 
     // we get the messages
     socket.on("getMsg", data => {
-      let listMessages = recMsg.listMsg;
+      let listMessages = msgList;
       listMessages.push(JSON.parse(data));
-      setRecMsg({ listMsg: listMessages });
+      setRecMsg(listMessages);
     });
-  }, [recMsg]);
+  }, [msgList]);
 
   // to send a message
-  const sendMessage = () => {
+  const sendMessage = (msg) => {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
   }
 
-  if (socket.connected) {
+  console.log(loggedUser);
+
+  if (!socket.connected) {
     return <LoadingDisplay />
   } else {
     return (
       <Container className={classes.root}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           <Button variant="contained" color="primary" onClick={() => alert("PAUSED")}>PAUSE TIMER</Button>
-          <Typography variant="h5">You are: {word}</Typography>
+          <Typography variant="h5">You are: {loggedUser?.userName}</Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <GamePlayersList />
+              <GamePlayersList userList={userList} />
               <br />
               <UserWordDisplay word={word} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <PhaseDisplay />
               <br />
-              <GameChat />
+              <GameChat loggedUserID={loggedUser.id} msgList={msgList} sendMessage={sendMessage} />
             </Grid>
           </Grid>
         </Box>
