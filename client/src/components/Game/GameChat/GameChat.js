@@ -11,31 +11,46 @@ export default function GameChat({ loggedUserID, msgList, sendMessage }) {
   const handleChange = (e) => {
     setMsg(e.target.value)
   }
+  const handleSend = (e) => {
+    console.log("SENDING")
+    sendMessage(msg)
+    console.log("SENT?")
+  }
   return (
     <Paper>
       <Box p={3}>
         <Typography variant="body1">GAME CHAT WINDOW</Typography>
-        <Container>
+        <Container
+          style={{
+            background: 'rgb(233, 229, 229)',
+            borderRadius: '5px',
+            padding: 10,
+            overflowY: 'auto',
+            height: 500
+          }}
+        >
+          <Box display="flex" flexDirection="column">
           {msgList.map((val, idx) => {
             const { id, userName, msg, time } = val;
             if (loggedUserID === id) {
               return (
-                <div key={`${id} ${msg} ${idx}`}>
+                <Box alignSelf="flex-start" key={`${id} ${msg} ${idx}`}>
                   <Message userName={userName} msg={msg} time={time} />
-                </div>
+                </Box>
               )
             } else {
               return (
-                <div key={`${id} ${msg} ${idx}`}>
+                <Box alignSelf="flex-end" key={`${id} ${msg} ${idx}`}>
                   <Message userName={userName} msg={msg} time={time} />
-                </div>
+                </Box>
               )
             }
           })}
+          </Box>
         </Container>
         <Box display="flex">
           <Input style={{ flexGrow: 1 }} value={msg} onChange={handleChange} placeholder="Enter chat here" />
-          <Button variant="contained" color="primary" onClick={() => sendMessage(msg)}>
+          <Button variant="contained" color="primary" onClick={handleSend}>
             <SendIcon />
           </Button>
         </Box>
