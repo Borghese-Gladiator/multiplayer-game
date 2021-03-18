@@ -1,35 +1,29 @@
-import React, { useState } from 'react'
 // Material UI components
-import { Paper, Box, Grid, Typography } from '@material-ui/core';
+import { Container, Paper, Box, Grid, Typography } from '@material-ui/core';
 // Material UI icons
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
-function GamePlayersList(props) {
-  const [players, setPlayers] = useState([
-    { id: "1", name: "Player 1" },
-    { id: "2", name: "Player 1" },
-    { id: "3", name: "Player 1" },
-    { id: "4", name: "Player 1" },
-    { id: "5", name: "Player 1" },
-  ]);
-
+function GamePlayersList({ userList }) {
   return (
     <Paper>
-      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-        <Typography variant="h4">Players</Typography>
-        <br />
-        <Grid container>
-          {players.map((val, idx) => {
-            const { id, name } = val;
-            return (
-              <Grid item xs={4} md={3} lg={2} key={id}>
-                <AccountBoxIcon style={{ fontSize: "40px" }} />
-                <Typography variant="h6" gutterBottom>{name}</Typography>
-              </Grid>
-            )
-          })}
-        </Grid>
-      </Box>
+      <Container>
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography variant="h4">Players</Typography>
+          <br />
+          <Grid container>
+            {userList.map((val, idx) => {
+              const { id, userName, connectionTime } = val;
+              console.log(`Connection Time: ${connectionTime}`)
+              return (
+                <Grid item xs={6} md={4} lg={3} key={`${id} ${idx}`}>
+                  <AccountBoxIcon style={{ fontSize: "40px" }} />
+                  <Typography variant="h6" style={{ wordWrap: 'break-word' }}>{userName}</Typography>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Box>
+      </Container>
     </Paper>
 
   )
