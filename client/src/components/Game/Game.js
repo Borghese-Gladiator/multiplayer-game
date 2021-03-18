@@ -84,7 +84,7 @@ function Game() {
 
     // we get the messages
     socket.on("getMsg", data => {
-      let listMessages = msgList;
+      const listMessages = msgList;
       listMessages.push(JSON.parse(data));
       setRecMsg(listMessages);
     });
@@ -94,8 +94,6 @@ function Game() {
   const sendMessage = (msg) => {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
   }
-
-  console.log(loggedUser);
 
   if (!socket.connected) {
     return <LoadingDisplay />
