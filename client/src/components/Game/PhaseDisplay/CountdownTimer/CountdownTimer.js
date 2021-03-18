@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+// Material UI Components
+import {
+  Box, Grid, Paper, Button, Typography, Container
+} from '@material-ui/core';
 
 const minutesToAdd = 1;
 const currentTime = new Date().getTime();
@@ -40,7 +44,7 @@ function CountdownTimer() {
     );
   });
   return (
-    <p>Time Left: {timerComponents.length ? timerComponents : <span>Time's up!</span>}</p>
+    <Typography variant="body1">Time Left: {timerComponents.length ? timerComponents : <span>Time's up!</span>}</Typography>
   );
 }
 
