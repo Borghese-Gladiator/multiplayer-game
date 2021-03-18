@@ -1,7 +1,21 @@
 # Word-Wolf-Multiplayer-Game
-## I dedicate this page to the one and only JIIIIIIIIIIIIIIIIIIIIIIIIINB
+Word Wolf is a game where. Here is the rulebook for more info: [https://boardgamegeek.com/boardgame/266098/word-wolf](https://boardgamegeek.com/boardgame/266098/word-wolf)
 
-####  Change
+## Word Wolf Features
+
+
+## Word Wolf Rules
+- Every player is given a word. One player receives a different word from the others. People vote on who has the different word.
+- In the Describe phase, everyone says something about their word (blend in if you believe you are the minority).
+- In the Discussion phase, everyone discusses whose answer is the most suspicious
+- In the Death phase, everyone votes or skips.
+- Phases repeat in the order Describe, Discussion, Death
+
+## Coming Soon Balancing
+- More people means more word info making it easier for the minority. Scaling the minority will be a next step.
+- 
+
+##  Changes from Generated Chatroom 
 - removed /client/ to remove Next.js SSR & Reactstrap 
 	- Reactstrap - layout components do not work with Next.js
 	- Next.js - SSR results in styled-components & material-ui/core giving errors during development
