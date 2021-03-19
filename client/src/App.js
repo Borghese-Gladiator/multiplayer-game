@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from "react-router-dom";
@@ -12,7 +12,7 @@ import NotFound from './components/NotFound';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <DefaultLayout>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -31,7 +31,7 @@ function App() {
           </Route>
         </Switch>
       </DefaultLayout>
-    </Router>
+    </BrowserRouter>
   );
 }
 
