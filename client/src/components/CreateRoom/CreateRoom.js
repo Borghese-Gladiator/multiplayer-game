@@ -80,8 +80,22 @@ export default function CreateRoom() {
   if (data)
     return (
       <div className={classes.root}>
-        <Container maxWidth="sm">
-          <Typography variant="h3" style={{color: "white", paddingBottom: 40}}>Waiting for Others</Typography>
+        <Container maxWidth="md">
+          <Grid container>
+            <Grid item xs={6}>
+              <Typography variant="h4" style={{ color: "white" }}>Settings</Typography>
+              <br />
+              <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
+            </Grid>
+            <Grid item xs={6}>
+              <Container>
+                <Typography variant="h4" style={{ color: "white" }}>Players</Typography>
+                <br />
+                <PlayersList />
+              </Container>
+            </Grid>
+          </Grid>
+          <br />
           <div>
             <Grid container
               onMouseEnter={() => setIsShowingLink(true)}
@@ -109,17 +123,6 @@ export default function CreateRoom() {
               </Grid>
             </Grid>
           </div>
-          <br />
-          <Grid container>
-            <Grid item xs={6}>
-              <RoomSettings gameModes={gameModes} roomURL={`/game/${roomID}`} hostUser={"James"} />
-            </Grid>
-            <Grid item xs={6}>
-              <Container>
-                <PlayersList />
-              </Container>
-            </Grid>
-          </Grid>
         </Container>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
