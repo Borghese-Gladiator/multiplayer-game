@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    paddingTop: theme.spacing(8)
   },
   cardRoot: {
     marginTop: theme.spacing(5),
