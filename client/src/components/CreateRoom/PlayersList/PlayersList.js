@@ -43,7 +43,7 @@ function PlayersList({ players }) {
   const playerElemList = [];
   for (let i = 0; i < MAX_PEOPLE; i++) {
     playerElemList.push(
-      <Grid key={`${i * i}`} item xs={12} md={6} lg={4}>
+      <Grid key={`${i * i}`} item xs={12} sm={6} lg={4}>
         <Paper>
           {i < players.length ? <PlayerElem name={players[i].name} /> : <PlaceholderElem />}
         </Paper>
