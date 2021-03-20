@@ -6,8 +6,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper, Box, Typography, Button, Divider, TextField, Select, MenuItem, FormControl, FormHelperText, InputLabel
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+// Material UI Icons
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+// Constants
+import { MIN_PEOPLE } from '../../../constants/constants';
 
 function PickSettings(props) {
   const { gameModes } = props;
@@ -69,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RoomSettings(props) {
   const classes = useStyles();
-  const { gameModes, roomURL, hostUser } = props;
+  const { numPlayers, gameModes, startURL } = props;
   const [customWordsText, setCustomWordsText] = useState('');
   const [age, setAge] = React.useState(30);
   const [roundObj, setRoundObj] = useState({
@@ -93,7 +97,6 @@ function RoomSettings(props) {
           <Typography variant="h5">Lobby</Typography>
         </Box>
         <Divider style={{ width: '100%', borderTop: '3px double #8c8b8b' }} />
-
         <FormControl className={classes.formControl}>
           <Typography variant="body2">Describe time in seconds</Typography>
           <Select
@@ -156,7 +159,15 @@ function RoomSettings(props) {
         />
         <PickSettings gameModes={gameModes} />
         <Box alignSelf="center">
-          <Button component={Link} to={roomURL} color="primary" variant="contained">Start Game</Button>
+          {
+            numPlayers >= MIN_PEOPLE
+              ? <Button component={Link} to={startURL} color="primary" variant="contained">Start Game</Button>
+              :
+              <div>
+                <Button component={Link} to={startURL} color="primary" variant="contained" disabled>Start Game</Button>
+                <Alert severity="error">Have {numPlayers} players. Need {MIN_PEOPLE} players.</Alert>
+              </div>
+          }
         </Box>
       </Box>
     </Paper>

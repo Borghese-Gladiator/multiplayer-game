@@ -7,7 +7,7 @@ import { Paper, Grid, Typography, CardActionArea } from '@material-ui/core';
 // Material UI Icons
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 // constants
-import { MIN_PEOPLE, MAX_PEOPLE } from '../../../constants/constants';
+import { MAX_PEOPLE } from '../../../constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   elemSize: {
@@ -39,14 +39,7 @@ function PlayerElem({ name }) {
   )
 }
 
-function PlayersList() {
-  const [players, setPlayers] = useState([
-    { id: "1", name: "toddyyear-round" },
-    { id: "2", name: "toddyyear-round" },
-    { id: "3", name: "toddyyear-round" },
-    { id: "4", name: "toddyyear-round" },
-    { id: "5", name: "toddyyear-round" },
-  ]);
+function PlayersList({ players }) {
   const playerElemList = [];
   for (let i = 0; i < MAX_PEOPLE; i++) {
     playerElemList.push(
