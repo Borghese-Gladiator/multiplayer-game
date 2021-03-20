@@ -11,7 +11,7 @@ import { MAX_PEOPLE } from '../../../constants/constants';
 
 const useStyles = makeStyles((theme) => ({
   elemSize: {
-    minHeight: theme.spacing(10),
+    minHeight: theme.spacing(8),
     borderStyle: "solid",
     borderColor: "white",
   }
