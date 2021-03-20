@@ -1,74 +1,42 @@
 import React, { useState } from 'react';
-// routing
+// routing to start game
 import { Link } from 'react-router-dom';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Paper, Box, Typography, Button, Divider, Select, MenuItem, FormControl
+  TextField, Paper, Box, Typography, Button, Divider, Select, MenuItem, FormControl
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-// Material UI Icons
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+// Custom Components
+import PickGameMode from './PickGameMode';
 // Constants
 import { MAX_PEOPLE, MIN_PEOPLE } from '../../../constants/constants';
 
-function PickSettings(props) {
-  const { gameModes } = props;
-  const arrLength = gameModes.length;
-  const [gameModeIndex, setGameModeIndex] = useState(0);
-  const handleNextClick = () => {
-    if (gameModeIndex === arrLength - 1) {
-      setGameModeIndex(0);
-    } else {
-      setGameModeIndex(gameModeIndex + 1);
-    }
-  }
-  const handlePrevClick = () => {
-    if (gameModeIndex === 0) {
-      setGameModeIndex(arrLength - 1);
-    } else {
-      setGameModeIndex(gameModeIndex - 1);
-    }
-  }
-
-  return (
-    <div style={{ width: '100%' }}>
-      <Box display="flex" p={1} bgcolor="background.paper">
-        <Button variant="outlined" onClick={handleNextClick}>
-          <ArrowBackIosIcon />
-        </Button>
-        <Box p={1} flexGrow={1} bgcolor="grey.300">
-          {gameModes[gameModeIndex].name}
-        </Box>
-        <Button variant="outlined" onClick={handlePrevClick}>
-          <ArrowForwardIosIcon />
-        </Button>
-      </Box>
-    </div>
-  )
-}
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
     width: '100%',
+  },
+  formControlLabel: {
+    textAlign: 'left'
   },
   selectEmpty: {
     border: '1px solid #ccc',
-    width: '100%',
   },
   root: {
     padding: theme.spacing(1),
-    width: '100%',
     minHeight: '300px'
   },
   content: {
+    width: "100%",
     '& > *': {
-      margin: theme.spacing(0.5),
-      width: '100%'
+      marginTop: theme.spacing(0.5),
     },
-  }
+  },
+  textarea: {
+    border: '1px solid #ccc',
+    width: "100%",
+    minHeight: theme.spacing(10)
+  },
 }));
 
 function RoomSettings(props) {
@@ -118,58 +86,64 @@ function RoomSettings(props) {
           <Typography variant="h5">Lobby</Typography>
         </Box>
         <Divider style={{ width: '100%', borderTop: '3px double #8c8b8b' }} />
-        <FormControl className={classes.formControl}>
-          <Typography variant="body2">Describe time in seconds</Typography>
-          <Select
-            value={age}
-            onChange={handleChange}
-            displayEmpty
-            className={classes.selectEmpty}
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
-          </Select>
-        </FormControl>
+        <div className={classes.content}>
+          <FormControl className={classes.formControl}>
+            <Typography className={classes.formControlLabel} variant="body2">Describe Time</Typography>
+            <Select
+              value={age}
+              onChange={handleChange}
+              displayEmpty
+              className={classes.selectEmpty}
+              inputProps={{ 'aria-label': 'Without label' }}
+            >
+              <MenuItem value={10}>10 sec</MenuItem>
+              <MenuItem value={20}>20 sec</MenuItem>
+              <MenuItem value={30}>30 sec</MenuItem>
+            </Select>
+          </FormControl>
 
-        <FormControl className={classes.formControl}>
-          <Typography variant="body2">Discussion time in seconds</Typography>
-          <Select
-            value={age}
-            onChange={handleChange}
-            displayEmpty
-            className={classes.selectEmpty}
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-          <Typography variant="body2">Voting time in seconds</Typography>
-          <Select
-            value={age}
-            onChange={handleChange}
-            displayEmpty
-            className={classes.selectEmpty}
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl className={classes.formControl}>
+            <Typography className={classes.formControlLabel} variant="body2">Discussion Time</Typography>
+            <Select
+              value={age}
+              onChange={handleChange}
+              displayEmpty
+              className={classes.selectEmpty}
+              inputProps={{ 'aria-label': 'Without label' }}
+            >
+              <MenuItem value={10}>10 sec</MenuItem>
+              <MenuItem value={20}>20 sec</MenuItem>
+              <MenuItem value={30}>30 sec</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <Typography className={classes.formControlLabel} variant="body2">Voting Time</Typography>
+            <Select
+              value={age}
+              onChange={handleChange}
+              displayEmpty
+              className={classes.selectEmpty}
+              inputProps={{ 'aria-label': 'Without label' }}
+            >
+              <MenuItem value={10}>10 sec</MenuItem>
+              <MenuItem value={20}>20 sec</MenuItem>
+              <MenuItem value={30}>30 sec</MenuItem>
+            </Select>
+          </FormControl>
 
-        <Typography variant="body2">Custom Words</Typography>
-        <textarea
-          value={customWordsText}
-          onChange={handleTextFieldChange}
-          placeholder={`Type custom word pairs separated by a comma and then a new line.\nFirst_Word,Second_Word\nMIT,Harvard`}
-          style={{ border: '1px solid #ccc', width: "100%", minHeight: '40px' }}
-        />
-        <PickSettings gameModes={gameModes} />
+          <FormControl className={classes.formControl}>
+            <Typography className={classes.formControlLabel} variant="body2">Custom Word Pairs</Typography>
+            <TextField
+              value={customWordsText}
+              onChange={handleTextFieldChange}
+              multiline
+              rows={4}
+              placeholder={`For example: \n\nFirst_Word,Second_Word\nMIT,Harvard`}
+              className={classes.textarea}
+            />
+          </FormControl>
+          <PickGameMode gameModes={gameModes} />
+        </div>
         <Box alignSelf="center">
           {startButton}
         </Box>
