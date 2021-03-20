@@ -17,19 +17,18 @@ export default function GameChat({ loggedUserID, msgList, sendMessage }) {
     console.log("SENT?")
   }
   return (
-    <Paper>
-      <Box p={3}>
-        <Typography variant="body1">GAME CHAT WINDOW</Typography>
-        <Container
-          style={{
-            background: 'rgb(233, 229, 229)',
-            borderRadius: '5px',
-            padding: 10,
-            overflowY: 'auto',
-            height: 500
-          }}
-        >
-          <Box display="flex" flexDirection="column">
+    <div>
+      <Typography variant="body1">GAME CHAT WINDOW</Typography>
+      <Container
+        style={{
+          background: 'rgb(233, 229, 229)',
+          borderRadius: '5px',
+          padding: 10,
+          overflowY: 'auto',
+          height: 500
+        }}
+      >
+        <Box display="flex" flexDirection="column">
           {msgList.map((val, idx) => {
             const { id, userName, msg, time } = val;
             if (loggedUserID === id) {
@@ -46,15 +45,14 @@ export default function GameChat({ loggedUserID, msgList, sendMessage }) {
               )
             }
           })}
-          </Box>
-        </Container>
-        <Box display="flex">
-          <Input style={{ flexGrow: 1 }} value={msg} onChange={handleChange} placeholder="Enter chat here" />
-          <Button variant="contained" color="primary" onClick={handleSend}>
-            <SendIcon />
-          </Button>
         </Box>
+      </Container>
+      <Box display="flex">
+        <Input style={{ flexGrow: 1 }} value={msg} onChange={handleChange} placeholder="Enter chat here" />
+        <Button variant="contained" color="primary" onClick={handleSend}>
+          <SendIcon />
+        </Button>
       </Box>
-    </Paper>
+    </div>
   )
 }

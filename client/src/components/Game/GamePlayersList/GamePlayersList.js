@@ -10,12 +10,12 @@ function GamePlayersList({ userList }) {
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           <Typography variant="h4">Players</Typography>
           <br />
-          <Grid container>
+          <Grid container spacing={3}>
             {userList.map((val, idx) => {
               const { id, userName, connectionTime } = val;
               console.log(`Connection Time: ${connectionTime}`)
               return (
-                <Grid item xs={6} md={4} lg={3} key={`${id} ${idx}`}>
+                <Grid item xs={12} key={`${id} ${idx}`}>
                   <AccountBoxIcon style={{ fontSize: "40px" }} />
                   <Typography variant="h6" style={{ wordWrap: 'break-word' }}>{userName}</Typography>
                 </Grid>
