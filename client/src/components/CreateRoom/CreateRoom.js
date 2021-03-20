@@ -38,7 +38,20 @@ const useStyles = makeStyles((theme) => ({
   roomLinkText: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-  }
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+      textAlign: 'center'
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const roomID = 'abc123'; // temp constant - should retrieve this from server
@@ -88,18 +101,20 @@ export default function CreateRoom() {
     return (
       <div className={classes.root}>
         <Container maxWidth="md">
-          <Grid container>
+          <Grid container spacing={3}>
             <Grid item xs={6}>
-              <Typography variant="h4" style={{ color: "white" }}>Settings</Typography>
-              <br />
+              <div className={classes.sectionDesktop}>
+                <Typography variant="h4" style={{ color: "white" }}>Settings</Typography>
+                <br />
+              </div>
               <RoomSettings numPlayers={players.length} gameModes={gameModes} startURL={`/game/${roomID}`} />
             </Grid>
             <Grid item xs={6}>
-              <Container>
+              <div className={classes.sectionDesktop}>
                 <Typography variant="h4" style={{ color: "white" }}>Players</Typography>
                 <br />
-                <PlayersList players={players} />
-              </Container>
+              </div>
+              <PlayersList players={players} />
             </Grid>
           </Grid>
           <br />
