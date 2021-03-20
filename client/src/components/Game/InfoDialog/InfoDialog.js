@@ -40,7 +40,7 @@ export default function SimpleDialogDemo({ username, word }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         <InfoIcon style={{fontSize: 30}} />
       </Button>
 

@@ -31,9 +31,7 @@ const socket = socketIOClient(ENDPOINT, {
 
 function LeaveButton() {
   return (
-    <div>
-      <Button variant="outlined" color="primary"><ExitToAppIcon style={{ fontSize: 30 }} /></Button>
-    </div>
+    <Button variant="contained" color="secondary"><ExitToAppIcon style={{ fontSize: 30 }} /></Button>
   )
 }
 

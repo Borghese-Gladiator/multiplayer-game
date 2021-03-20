@@ -48,7 +48,7 @@ export default function GameChat({ loggedUserID, msgList, sendMessage }) {
       </Container>
       <Box display="flex">
         <Input style={{ flexGrow: 1 }} value={msg} onChange={handleChange} placeholder="Enter chat here" />
-        <Button variant="contained" color="primary" onClick={handleSend}>
+        <Button variant="contained" color="secondary" onClick={handleSend}>
           <SendIcon />
         </Button>
       </Box>
