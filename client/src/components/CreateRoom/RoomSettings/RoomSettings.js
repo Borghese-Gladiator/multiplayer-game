@@ -106,9 +106,6 @@ function RoomSettings(props) {
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>
             <MenuItem value={30}>30</MenuItem>
@@ -124,9 +121,6 @@ function RoomSettings(props) {
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>
             <MenuItem value={30}>30</MenuItem>
@@ -141,9 +135,6 @@ function RoomSettings(props) {
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>
             <MenuItem value={30}>30</MenuItem>
@@ -161,10 +152,10 @@ function RoomSettings(props) {
         <Box alignSelf="center">
           {
             numPlayers >= MIN_PEOPLE
-              ? <Button component={Link} to={startURL} color="primary" variant="contained">Start Game</Button>
+              ? <Button component={Link} to={startURL} color="secondary" variant="contained">Start Game</Button>
               :
               <div>
-                <Button component={Link} to={startURL} color="primary" variant="contained" disabled>Start Game</Button>
+                <Button component={Link} to={startURL} color="secondary" variant="contained" disabled>Start Game</Button>
                 <Alert severity="error">Have {numPlayers} players. Need {MIN_PEOPLE} players.</Alert>
               </div>
           }
