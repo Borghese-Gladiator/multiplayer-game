@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     width: "100%",
     '& > *': {
-      marginTop: theme.spacing(0.5),
+      marginTop: theme.spacing(1),
     },
   },
   textarea: {
@@ -143,10 +143,10 @@ function RoomSettings(props) {
             />
           </FormControl>
           <PickGameMode gameModes={gameModes} />
+          <Box alignSelf="center">
+            {startButton}
+          </Box>
         </div>
-        <Box alignSelf="center">
-          {startButton}
-        </Box>
       </Box>
     </Paper>
   )
