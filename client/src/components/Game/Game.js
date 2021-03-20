@@ -9,7 +9,7 @@ import userGen from "username-generator"
 // Material UI Components
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Box, Grid, Paper, Container
+  Box, Grid, Paper, Container, Button
 } from '@material-ui/core';
 // custom components
 import LoadingDisplay from '../LoadingDisplay';
@@ -17,6 +17,8 @@ import GamePlayersList from './GamePlayersList';
 import PhaseDisplay from './PhaseDisplay';
 import GameChat from './GameChat';
 import InfoDialog from './InfoDialog';
+// Material UI Icons
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 // client-side
 const ENDPOINT = process.env.REACT_APP_NODE_ENV === "production" ? process.env.REACT_APP_API_URL : "http://127.0.0.1:4001";
@@ -27,12 +29,19 @@ const socket = socketIOClient(ENDPOINT, {
   }
 });
 
+function LeaveButton() {
+  return (
+    <div>
+      <Button variant="outlined" color="primary"><ExitToAppIcon style={{ fontSize: 30 }} /></Button>
+    </div>
+  )
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
   }
 }))
-
 
 function Game() {
   const classes = useStyles();
@@ -89,7 +98,7 @@ function Game() {
     socket.emit("sendMsg", JSON.stringify({ id: loggedUser.id, msg: msg }));
   }
 
-  if (!socket.connected) {
+  if (socket.connected) {
     return <LoadingDisplay />
   } else {
     return (
@@ -104,7 +113,12 @@ function Game() {
             <Grid item xs={10}>
               <Paper>
                 <Box display="flex" justifyContent="flex-end">
-                  <InfoDialog username={loggedUser?.userName} word={word} />
+                  <Box m={1}>
+                    <InfoDialog username={loggedUser?.userName} word={word} />
+                  </Box>
+                  <Box m={1}>
+                    <LeaveButton />
+                  </Box>
                 </Box>
                 <Box p={3}>
                   <GameChat loggedUserID={loggedUser.id} msgList={msgList} sendMessage={sendMessage} />

@@ -39,12 +39,12 @@ export default function SimpleDialogDemo({ username, word }) {
   };
 
   return (
-    <Box m={1}>
+    <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         <InfoIcon style={{fontSize: 30}} />
       </Button>
 
       <SimpleDialog username={username} word={word} open={open} handleClose={handleClose} />
-    </Box>
+    </div>
   );
 }
