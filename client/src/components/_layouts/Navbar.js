@@ -15,12 +15,14 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     background: 'transparent',
     boxShadow: 'none',
-    paddingLeft: theme.spacing(25),
-    paddingRight: theme.spacing(25)
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: theme.spacing(15),
+      paddingRight: theme.spacing(15),
+    },
   },
   logo: {
     height: theme.spacing(10)
-  }
+  },
 }));
 
 export default function ButtonAppBar() {
