@@ -9,7 +9,7 @@ import userGen from "username-generator"
 // Material UI Components
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Box, Grid, Paper, Typography, Container
+  Box, Grid, Paper, Container
 } from '@material-ui/core';
 // custom components
 import LoadingDisplay from '../LoadingDisplay';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // Material UI Components
-import { Container, Input, Box, Button, Paper, Typography } from '@material-ui/core';
+import { Container, Input, Box, Button, Typography } from '@material-ui/core';
 // Material UI Icons
 import SendIcon from '@material-ui/icons/Send';
 // Custom Components
