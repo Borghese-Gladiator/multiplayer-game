@@ -1,4 +1,5 @@
 import React from 'react';
+// Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,17 +7,22 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+// assets
+import CustomLogoImg from '../../images/cooltext379345859766886.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  appBar: {
+    background: 'transparent',
+    boxShadow: 'none',
+    paddingLeft: theme.spacing(25),
+    paddingRight: theme.spacing(25)
   },
-  title: {
-    flexGrow: 1,
-  },
+  logo: {
+    height: theme.spacing(10)
+  }
 }));
 
 export default function ButtonAppBar() {
@@ -24,15 +30,9 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
+          <img src={CustomLogoImg} alt="logo" className={classes.logo} />
         </Toolbar>
       </AppBar>
     </div>
