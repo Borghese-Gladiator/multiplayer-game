@@ -18,7 +18,6 @@ export default function GameChat({ loggedUserID, msgList, sendMessage }) {
   }
   return (
     <div>
-      <Typography variant="body1">GAME CHAT WINDOW</Typography>
       <Container
         style={{
           background: 'rgb(233, 229, 229)',
