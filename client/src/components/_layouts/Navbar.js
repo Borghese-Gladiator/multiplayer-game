@@ -1,4 +1,6 @@
 import React from 'react';
+// routing
+import { Link } from 'react-router-dom';
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,7 +30,9 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <img src={CustomLogoImg} alt="logo" className={classes.logo} />
+          <Link to="/">
+            <img src={CustomLogoImg} alt="logo" className={classes.logo} />  
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
