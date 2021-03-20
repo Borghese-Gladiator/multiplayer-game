@@ -61,12 +61,13 @@ export default function CreateRoom() {
   const [isShowingLink, setIsShowingLink] = useState(false);
   const { data, error, isPending } = useAsync({ promiseFn: loadPlayer, playerId: 2 });
   const [open, setOpen] = useState(false);
-  const [players, setPlayers] = useState([
+  // const [players, setPlayers] = useState([
+  const players = [
     { id: "1", name: "toddyyear-round" },
     { id: "2", name: "toddyyear-round" },
     { id: "3", name: "toddyyear-round" },
     { id: "4", name: "toddyyear-round" },
-  ]);
+  ];
 
   const handleClick = () => {
     // https://stackoverflow.com/questions/11401897/get-the-current-domain-name-with-javascript-not-the-path-etc

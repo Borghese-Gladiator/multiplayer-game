@@ -1,5 +1,5 @@
 // Material UI Components
-import { Container, Input, Box, Button, Paper, Typography } from '@material-ui/core';
+import { Box, Paper, Typography } from '@material-ui/core';
 
 export default function Message({ userName, msg, time }) {
   return (

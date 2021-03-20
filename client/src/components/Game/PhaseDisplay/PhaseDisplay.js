@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Material UI Components
 import { Paper, Typography} from '@material-ui/core';
 // Custom components
 import CountdownTimer from './CountdownTimer';
 
 export default function PhaseDisplay() {
-  const [currentPhase, setCurrentPhase] = useState("VOTING");
+  // const [currentPhase, setCurrentPhase] = useState("VOTING");
+  const currentPhase = "VOTING"
   return (
     <Paper>
       <Typography variant="body1">PHASE</Typography>

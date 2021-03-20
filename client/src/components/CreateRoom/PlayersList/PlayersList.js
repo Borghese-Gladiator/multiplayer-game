@@ -1,6 +1,6 @@
 // NOTE: I added div inside CardActionArea to enable border styling (CardActionArea does not show borderStyles)
 
-import React, { useState } from 'react';
+import React from 'react';
 // Material UI Components
 import { makeStyles } from "@material-ui/core/styles";
 import { Paper, Grid, Typography, CardActionArea } from '@material-ui/core';

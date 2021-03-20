@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Paper, Box, Typography, Button, Divider, TextField, Select, MenuItem, FormControl, FormHelperText, InputLabel
+  Paper, Box, Typography, Button, Divider, Select, MenuItem, FormControl
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 // Material UI Icons
@@ -76,12 +76,14 @@ function RoomSettings(props) {
   const { numPlayers, gameModes, startURL } = props;
   const [customWordsText, setCustomWordsText] = useState('');
   const [age, setAge] = React.useState(30);
+  /*
   const [roundObj, setRoundObj] = useState({
     describeTime: 30,
     discussionTime: 45,
     voteTime: 45,
     customWords: []
   });
+  */
 
   const handleChange = (event) => {
     setAge(event.target.value);

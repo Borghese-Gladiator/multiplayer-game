@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // routing - get roomID from URL
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+
 // SocketIO Client
 import socketIOClient from "socket.io-client";
 // Generate usernames
@@ -44,9 +45,10 @@ const useStyles = makeStyles((theme) => ({
 function Game() {
   const classes = useStyles();
   // get Room ID from URL
-  let { roomID } = useParams();
+  // let { roomID } = useParams();
 
-  const [word, setWord] = useState("MIT");
+  // const [word, setWord] = useState("MIT");
+  const word = "MIT"
   // SocketIO Room (users present)
   const [loggedUser, setLoggedUser] = useState(
     { id: "1", userName: "Player 1" }
