@@ -11,7 +11,7 @@ import Alert from '@material-ui/lab/Alert';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 // Constants
-import { MIN_PEOPLE } from '../../../constants/constants';
+import { MAX_PEOPLE, MIN_PEOPLE } from '../../../constants/constants';
 
 function PickSettings(props) {
   const { gameModes } = props;
@@ -92,6 +92,25 @@ function RoomSettings(props) {
     setCustomWordsText(event.target.value);
   };
 
+  let startButton;
+  if (numPlayers < MIN_PEOPLE) {
+    startButton = (
+      <div>
+        <Button component={Link} to={startURL} color="secondary" variant="contained" disabled>Start Game</Button>
+        <Alert severity="error">Have {numPlayers} players. Need {MIN_PEOPLE} players.</Alert>
+      </div>
+    )
+  } else if (numPlayers > MAX_PEOPLE) {
+    startButton = (
+      <div>
+        <Button component={Link} to={startURL} color="secondary" variant="contained" disabled>Start Game</Button>
+        <Alert severity="error">There are {numPlayers} players. Limit is {MAX_PEOPLE} players.</Alert>
+      </div>
+    )
+  } else {
+    startButton = <Button component={Link} to={startURL} color="secondary" variant="contained">Start Game</Button>
+  }
+
   return (
     <Paper className={classes.root}>
       <Box display="flex" flexDirection="column" alignItems="flex-start">
@@ -152,15 +171,7 @@ function RoomSettings(props) {
         />
         <PickSettings gameModes={gameModes} />
         <Box alignSelf="center">
-          {
-            numPlayers >= MIN_PEOPLE
-              ? <Button component={Link} to={startURL} color="secondary" variant="contained">Start Game</Button>
-              :
-              <div>
-                <Button component={Link} to={startURL} color="secondary" variant="contained" disabled>Start Game</Button>
-                <Alert severity="error">Have {numPlayers} players. Need {MIN_PEOPLE} players.</Alert>
-              </div>
-          }
+          {startButton}
         </Box>
       </Box>
     </Paper>
