@@ -15,12 +15,11 @@ function SimpleDialog({ handleClose, open, username, word }) {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Typography variant="h5">You are: {username}</Typography>
-
+            <Typography variant="h6">You are</Typography>
+            <Typography variant="h4">{username}</Typography>
             <Typography variant="h6">Your word</Typography>
             <Typography variant="h3">{word}</Typography>
           </Box>
-
         </DialogContentText>
       </DialogContent>
 
