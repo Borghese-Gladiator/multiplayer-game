@@ -64,6 +64,8 @@ export default function CreateRoom() {
   const [players, setPlayers] = useState([
     { id: "1", name: "toddyyear-round" },
     { id: "2", name: "toddyyear-round" },
+    { id: "3", name: "toddyyear-round" },
+    { id: "4", name: "toddyyear-round" },
   ]);
 
   const handleClick = () => {
@@ -123,7 +125,7 @@ export default function CreateRoom() {
                 </Paper>
               </Grid>
               <Grid item xs={2}>
-                <Button color="primary" variant="contained" style={{ width: "95%" }} onClick={handleClick}>Copy</Button>
+                <Button color="secondary" variant="contained" style={{ width: "95%" }} onClick={handleClick}>Copy</Button>
               </Grid>
             </Grid>
           </div>
